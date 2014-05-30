@@ -1,12 +1,10 @@
-function love.load()
+function map()
 section1{1="x", 1 = "y", 1="h", 1 = "w", true = "on"}
 section2{1="x", 1 = "y", 1="h", 1 = "w", true = "on"}
 section3{1="x", 1 = "y", 1="h", 1 = "w", true = "on"}
 section4{1="x", 1 = "y", 1="h", 1 = "w", true = "on"}
 section5{1="x", 1 = "y", 1="h", 1 = "w", true = "on"}
 section6{1="x", 1 = "y", 1="h", 1 = "w", true = "on"}
-end
-function love.update()
 goto redraw
 if section.on == false then
 section1.x = math.random(0, 600)
