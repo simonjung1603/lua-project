@@ -1,1 +1,3 @@
-peter parker what a barker
+function love.load()
+  require "resource/map.lua"
+  end
