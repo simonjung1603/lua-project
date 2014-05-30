@@ -1,29 +1,24 @@
 function love.load()
     char = love.graphics.newImage("character.png")
-    x = 50
-    y = 50
-    velX = 0
-    velY = 0
-    gravity = -98.1
-    DvelY = 0
+    player{50 = "x",50 = "y", 0 = "velx", 0 = "vely",98.1 = "gravity",0 = Dvel = 0}
 end
 
 function love.update(dt)
     --if love.keyboard.isDown("g") then velY = -100
     --end
-    velY = velY - (gravity * dt)
-    y = y + velY * dt
-    if y >= 475 then gravity = 0 
-        else gravity = -98.1
+    player.vely = player.vely - (player.gravity * dt)
+    player.y = player.y + player.vely * dt
+    if y >= 475 then player.gravity = 0 
+        else player.gravity = -98.1
     end
-    if gravity == 0 then velY = 0
+    if player.gravity == 0 then player.vely = 0
         else velY = velY
     end
-    if love.keyboard.isDown("w") and gravity == 0 then velY = -200
+    if love.keyboard.isDown("w") and player.gravity == 0 then player.vely = -200
     end
-    if love.keyboard.isDown("a") then x = x - 100 * dt
+    if love.keyboard.isDown("a") then player.x = player.x - 100 * dt
     end
-    if love.keyboard.isDown("d") then x = x + 100 * dt
+    if love.keyboard.isDown("d") then player.x = player.x + 100 * dt
     end
 end
 
