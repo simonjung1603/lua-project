@@ -30,11 +30,13 @@ end
 --collision detection
 	function collide ()
 		for i,v in ipairs (g) do 
-			if p.x + p.w / 2 > v.x and p.x + p.w / 2 < v.x + v.w 
-				and p.y + p.h >= v.y and p.y + p.h <= v.y + 5 
-				then 
+			if p.vy <= 0 then
+				if p.x + p.w / 2 > v.x and p.x + p.w / 2 < v.x + v.w 
+					and p.y + p.h >= v.y and p.y + p.h <= v.y + 5 
+					then 
 					p.ground = 1
 					p.vy = 0
+				end
 			end
 		end
 	end
