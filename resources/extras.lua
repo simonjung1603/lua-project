@@ -15,7 +15,7 @@ function setSpring (x, y, w, h)
 		love.graphics.rectangle("fill", s.x, s.y, s.w, s.h)
 	end
 	love.graphics.setColor(255,255,255)
-	if p.y + p.h < s.y + p.h and p.y + p.h > s.y 
+	if p.y + p.h < s.y + s.h and p.y + p.h > s.y 
 		and p.x + p.w / 2 > s.x and p.x + p.w / 2 < s.x + s.w
 		then
 		p.vy = 500
