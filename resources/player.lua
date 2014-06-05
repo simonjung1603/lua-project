@@ -21,9 +21,9 @@ function move (dt)
 			p.vy = 250
 		end
 	end
-	if love.keyboard.isDown("a") or love.keyboard.isDown("left") then p.x = p.x - 100 * dt
+	if love.keyboard.isDown("a") or love.keyboard.isDown("left") then p.x = p.x - 200 * dt
 	end
-	if love.keyboard.isDown("d") or love.keyboard.isDown("right") then p.x = p.x + 100 * dt
+	if love.keyboard.isDown("d") or love.keyboard.isDown("right") then p.x = p.x + 200 * dt
 	end
 end
 
@@ -38,13 +38,26 @@ end
 					p.vy = 0
 				end
 			end
+			if p.y + p.h < v.y then
+				p.ground = 0
+			end
 		end
 	end
 
+
 -- adding game over
 function check_death ()
-	if p.y > camera.y + love.graphics.getHeight() then
+	if p.y + p.h / 2 > camera.y + love.graphics.getHeight() then
 		love.event.quit()
+	end
+end
+--spawning player on the opposite side
+function check_side ()
+	if p.x + p.w / 2 > love.graphics.getWidth() then
+		p.x = p.x - love.graphics.getWidth()
+	end
+	if p.x + p.w / 2 < 0 then
+		p.x = p.x + love.graphics.getWidth()
 	end
 end
 
@@ -54,6 +67,7 @@ function PLAYER_UPDATE (dt)
 	move (dt)
 	collide ()
 	check_death ()
+	check_side ()
 end
 
 function PLAYER_DRAW ()
