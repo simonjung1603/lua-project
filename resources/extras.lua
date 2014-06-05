@@ -1,3 +1,4 @@
+-- Spring extra
 s = {}
 s.x = 0
 s.y = 0
@@ -21,3 +22,5 @@ function setSpring (x, y, w, h)
 		p.vy = 500
 	end
 end
+-- End of spring 
+
