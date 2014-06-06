@@ -2,10 +2,10 @@ require "resources/platforms"
 require "resources/camera"
 --define player 
 --p is the table used to store all the player variables
-p = {x = love.graphics.getWidth() / 2, y = love.graphics.getHeight() - 125, vy = 0, w = 0, h = 0, ground = 0,char = love.graphics.newImage("resources/character.png")}
+p = {x = love.graphics.getWidth() / 2, y = love.graphics.getHeight() - 125, vy = 0, w = 50, h = 50, ground = 0}
 
-p.w = p.char:getWidth ()
-p.h = p.char:getHeight ()
+--p.w = p.char:getWidth ()
+--p.h = p.char:getHeight ()
 gravity = -400
 
 --move the player around and make him jump
@@ -73,5 +73,7 @@ function PLAYER_UPDATE (dt)
 end
 
 function PLAYER_DRAW ()
-	love.graphics.draw(p.char, p.x, p.y)
+	love.graphics.setColor(math.random (0, 255), math.random (0, 255), math.random (0, 255))
+	love.graphics.rectangle("fill", p.x, p.y, p.w, p.h)
+	love.graphics.setColor(255,255,255)
 end
