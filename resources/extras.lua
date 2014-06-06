@@ -24,3 +24,35 @@ function setSpring (x, y, w, h)
 end
 -- End of spring 
 
+-- Chasing water
+wa = {x = 0, y = love.graphics.getHeight() + 1000, w = love.graphics.getWidth(), h = 20,v = 50}
+
+function water_move (dt)
+-- water_jump 
+	if p.y - wa.y < - 200 
+		then wa.v = 200
+		else
+		wa.v = 50
+	end
+-- water_rise 
+	wa.y = wa.y - wa.v * dt
+-- water_collide
+	if p.y + p.h / 4 > wa.y and p.y + p.h / 4 < wa.y + wa.h 
+		then love.event.quit()
+	end
+end
+
+function water_draw ()
+	love.graphics.setColor(0,255,0)
+	love.graphics.rectangle("fill", wa.x, wa.y, wa.w, wa.h)
+	love.graphics.setColor(255,255,255)
+end
+
+--PARENT FUNCTIONS
+function EXTRAS_UPDATE (dt)
+	water_move (dt)
+end
+
+function EXTRAS_DRAW ()
+	water_draw ()
+end
