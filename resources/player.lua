@@ -11,6 +11,7 @@ gravity = -400
 --move the player around and make him jump
 function move (dt)
 	--update y
+	if pause == "false" then
 	p.y = p.y - p.vy * dt
 	--apply gravitational force on the player
 	p.vy = p.vy + gravity * dt
@@ -25,6 +26,7 @@ function move (dt)
 	end
 	if love.keyboard.isDown("d") or love.keyboard.isDown("right") then p.x = p.x + 200 * dt
 	end
+end
 end
 
 --collision detection
