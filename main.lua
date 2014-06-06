@@ -3,6 +3,7 @@ require "resources/player"
 require "resources/platforms"
 require "resources/camera"
 require "resources/extras"
+
 w = 150
 h = 20
 
@@ -30,6 +31,6 @@ function love.draw()
 	PLAYER_DRAW ()
 	EXTRAS_DRAW ()
 	ground_draw()
-	--love.graphics.print("ground:"..p.ground,300,500)
+	love.graphics.print("ground:"..camera.y,300,camera.y)
 	camera:unset ()
 end
