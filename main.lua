@@ -20,6 +20,7 @@ end
 function love.update(dt)
 	--update
 	PLAYER_UPDATE (dt)
+	EXTRAS_UPDATE (dt)
 	camera:move ()
 end
 
@@ -27,6 +28,7 @@ function love.draw()
 	--draw
 	camera:set ()
 	PLAYER_DRAW ()
+	EXTRAS_DRAW ()
 	ground_draw()
 	love.graphics.print("ground:"..p.ground,300,500)
 	camera:unset ()
