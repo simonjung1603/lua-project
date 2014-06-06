@@ -30,6 +30,6 @@ function love.draw()
 	PLAYER_DRAW ()
 	EXTRAS_DRAW ()
 	ground_draw()
-	love.graphics.print("ground:"..p.ground,300,500)
+	--love.graphics.print("ground:"..p.ground,300,500)
 	camera:unset ()
 end
