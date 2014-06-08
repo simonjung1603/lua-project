@@ -5,8 +5,8 @@ require "resources/camera"
 require "resources/extras"
 require "resources/random"
 
-w = 150
-h = 20
+w = plat:getWidth()
+h = plat:getHeight ()
 ran = 0
 
 function love.load()
@@ -31,6 +31,7 @@ function love.update(dt)
 	PLAYER_UPDATE (dt)
 	EXTRAS_UPDATE (dt)
 	remove_platform ()
+	change_background ()
 	camera:move ()
 end
 
