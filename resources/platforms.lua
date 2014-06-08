@@ -22,7 +22,7 @@ function remove_platform ()
 	for i,v in ipairs (g) do
 		if v.y > camera.y + love.graphics.getHeight() then
 			table.remove (g, i)
-			if math.random (1,2) == 1 then
+			if math.random (1,3) <= 2 then
 				random_map ()
 			end
 		end
