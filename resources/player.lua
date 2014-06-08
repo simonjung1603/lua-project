@@ -23,8 +23,12 @@ function move (dt)
 		if love.keyboard.isDown(" ") or love.keyboard.isDown("w") or love.keyboard.isDown("up") then 
 			p.y = p.y - 10
 			p.ground = 0
-			p.inc = math.floor(number / 10 + 0.5) / 10 
-			print (p.inc)
+			if math.floor(number / 10 + 0.5) < 5500 then
+				p.inc = math.floor(number / 10 + 0.5) / 10 
+			else
+				p.inc = 550
+			end
+			--print (p.inc)
 			p.vy = p.inc + 400
 		end
 	end
@@ -49,7 +53,7 @@ end
 	function collide ()
 		for i,v in ipairs (g) do 
 			if p.vy <= 0 then
-				if p.x + p.w / 2 > v.x and p.x + p.w / 2 < v.x + v.w 
+				if p.x + p.w > v.x and p.x < v.x + v.w 
 					and p.y + p.h >= v.y and p.y + p.h <= v.y + v.h 
 					then 
 					p.ground = 1
@@ -95,9 +99,12 @@ function restart ()
 		p.y = love.graphics.getHeight() - plat:getHeight () - p.h
 		camera.y = 0
 		wa.y = love.graphics.getHeight() + 1000
+		for i,v in ipairs (g) do
+			table.remove (g, i)
+		end
 		ground_fill(0, love.graphics.getHeight() - h, love.graphics.getWidth(), h, 0)
 		ground_fill(math.random(0, love.graphics.getWidth() - w), love.graphics.getHeight() - 100, w, h, 0)
-		for i = 1, 20, 1 do
+		for i = 1, 50, 1 do
 		random_map ()
 		end
 		dead = "false"
@@ -116,7 +123,7 @@ function PLAYER_UPDATE (dt)
 end
 
 function PLAYER_DRAW ()
-	love.graphics.setColor(math.random (0, 255), math.random (0, 255), math.random (0, 255))
+	love.graphics.setColor(0,0,255)
 	love.graphics.rectangle("fill", p.x, p.y, p.w, p.h)
 	love.graphics.setColor(255,255,255)
 end
