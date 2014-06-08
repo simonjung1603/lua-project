@@ -26,25 +26,25 @@ end
 -- End of spring 
 
 -- Chasing water
-wa = {x = 0, y = love.graphics.getHeight() + 1000, w = love.graphics.getWidth(), h = 20,v = 50}
+wa = {x = 0, y = love.graphics.getHeight() + 1000, w = love.graphics.getWidth(), h = 20,v = 50, water = love.graphics.newImage("resources/water.png")}
 
 function water_move (dt)
 -- water_jump
-	if pause == "false" then 
-		if p.y - wa.y < - 200 
-			then wa.v = 200 + p.inc
-			else
-				wa.v = 75
+	if p.y < 0 then
+		if pause == "false" then 
+			if p.y - wa.y < - 220 
+				then wa.v = 200 - (p.y - wa.y)
+				else
+					wa.v = 75 
+			end
 		end
+	-- water_rise 
+		wa.y = wa.y - wa.v * dt
 	end
--- water_rise 
-	wa.y = wa.y - wa.v * dt
 end
 
 function water_draw ()
-	love.graphics.setColor(0,255,0)
-	love.graphics.rectangle("fill", wa.x, wa.y, wa.w, wa.h)
-	love.graphics.setColor(255,255,255)
+	love.graphics.draw(wa.water, wa.x, wa.y)
 end
 -- End Of Chasing Water
 
@@ -84,11 +84,47 @@ function ruler ()
 end
 -- end of ruler
 
+--fly
+	function fly ()
+		if love.keyboard.isDown("f") then
+			gravity = 0
+			p.vy = 2000
+		end
+	end
+--end
+
+--coin
+money = 0
+coin = {x = 0, y = 0, w = 0, h = 0, collected = "false", coin = love.graphics.newImage("resources/coin.png")}
+coin.w = coin.coin:getWidth ()
+coin.h = coin.coin:getHeight ()
+function setCoin (x, y)
+	coin.x = x
+	coin.y = y
+	for i,v in ipairs (g) do
+		if v.coin == true then
+			love.graphics.draw(coin.coin, coin.x, coin.y)
+		end
+	end
+		for i,v in ipairs (g) do
+			if coin.y < p.y + p.h and coin.y + coin.h > p.y 
+				and p.x + p.w > coin.x and p.x < coin.x + coin.w
+			then 
+				if v.y > p.y and v.y - coin.h * 2 < p.y + p.h and v.x - p.x < 0 and (v.x + v.w) - p.x > 0 then
+					v.coin = false
+					money = money + 1
+				end
+			end
+		end
+		love.graphics.print("coins:"..money, 300, camera.y + 10)
+end
 
 --PARENT FUNCTIONS
 function EXTRAS_UPDATE (dt)
 	pause_game ()
 	water_move (dt)
+	fly ()
+	
 
 
 end
